@@ -1,6 +1,6 @@
 {
   "tool": "banker-deadlock-lab v0.4",
-  "exportedAt": "2026-11-26T08:30:17.338Z",
+  "exportedAt": "2026-11-26T08:34:35.835Z",
   "caseId": "unsafe_01",
   "caseTitle": "不安全但尚未死锁",
   "currentState": {
@@ -142,7 +142,7 @@
   "operations": [
     {
       "index": 0,
-      "at": "2026-11-26T08:30:17.337Z",
+      "at": "2026-11-26T08:34:35.834Z",
       "kind": "load",
       "summary": "载入案例 unsafe_01：不安全但尚未死锁",
       "state": {
@@ -222,7 +222,7 @@
     },
     {
       "index": 1,
-      "at": "2026-11-26T08:30:17.338Z",
+      "at": "2026-11-26T08:34:35.835Z",
       "kind": "request",
       "summary": "P0 请求 [1, 1, 0]，试分配后被回滚",
       "state": {

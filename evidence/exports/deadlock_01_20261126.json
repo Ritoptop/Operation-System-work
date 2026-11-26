@@ -1,6 +1,6 @@
 {
   "tool": "banker-deadlock-lab v0.4",
-  "exportedAt": "2026-11-26T08:30:17.342Z",
+  "exportedAt": "2026-11-26T08:34:35.838Z",
   "caseId": "deadlock_01",
   "caseTitle": "实际死锁：三进程循环等待",
   "currentState": {
@@ -138,7 +138,7 @@
   "operations": [
     {
       "index": 0,
-      "at": "2026-11-26T08:30:17.342Z",
+      "at": "2026-11-26T08:34:35.837Z",
       "kind": "load",
       "summary": "载入案例 deadlock_01：实际死锁：三进程循环等待",
       "state": {
@@ -218,7 +218,7 @@
     },
     {
       "index": 1,
-      "at": "2026-11-26T08:30:17.342Z",
+      "at": "2026-11-26T08:34:35.837Z",
       "kind": "request",
       "summary": "P0 请求 [0, 2, 0]，超过尚需量",
       "state": {
@@ -308,7 +308,7 @@
     },
     {
       "index": 2,
-      "at": "2026-11-26T08:30:17.342Z",
+      "at": "2026-11-26T08:34:35.838Z",
       "kind": "request",
       "summary": "P0 请求 [0, 1, 0]，当前可用量不足",
       "state": {

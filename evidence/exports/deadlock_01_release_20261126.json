@@ -1,0 +1,355 @@
+{
+  "tool": "banker-deadlock-lab v0.4",
+  "exportedAt": "2026-11-26T08:34:35.840Z",
+  "caseId": "deadlock_01_release",
+  "caseTitle": "实际死锁：三进程循环等待（释放 P0 [1,0,0] 后复检）",
+  "currentState": {
+    "id": "deadlock_01",
+    "resources": [
+      "A",
+      "B",
+      "C"
+    ],
+    "total": [
+      1,
+      1,
+      1
+    ],
+    "available": [
+      1,
+      0,
+      0
+    ],
+    "processes": [
+      "P0",
+      "P1",
+      "P2"
+    ],
+    "allocation": [
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        1
+      ]
+    ],
+    "max": [
+      [
+        1,
+        1,
+        0
+      ],
+      [
+        0,
+        1,
+        1
+      ],
+      [
+        1,
+        0,
+        1
+      ]
+    ],
+    "requests": [
+      [
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        0
+      ]
+    ]
+  },
+  "safety": {
+    "safe": true,
+    "sequence": [
+      "P2",
+      "P1",
+      "P0"
+    ],
+    "steps": [
+      {
+        "index": 0,
+        "work": [
+          1,
+          0,
+          0
+        ],
+        "candidates": [
+          "P2"
+        ],
+        "chosen": "P2",
+        "finished": [
+          "P2"
+        ],
+        "note": "P2 尚需 [1, 0, 0] ≤ work [1, 0, 0]，完成后 work += [0, 0, 1]"
+      },
+      {
+        "index": 1,
+        "work": [
+          1,
+          0,
+          1
+        ],
+        "candidates": [
+          "P1"
+        ],
+        "chosen": "P1",
+        "finished": [
+          "P1",
+          "P2"
+        ],
+        "note": "P1 尚需 [0, 0, 1] ≤ work [1, 0, 1]，完成后 work += [0, 1, 0]"
+      },
+      {
+        "index": 2,
+        "work": [
+          1,
+          1,
+          1
+        ],
+        "candidates": [
+          "P0"
+        ],
+        "chosen": "P0",
+        "finished": [
+          "P0",
+          "P1",
+          "P2"
+        ],
+        "note": "P0 尚需 [1, 1, 0] ≤ work [1, 1, 1]，完成后 work += [0, 0, 0]"
+      }
+    ],
+    "stopReason": null
+  },
+  "deadlock": {
+    "deadlocked": false,
+    "reducible": [
+      "P2",
+      "P1",
+      "P0"
+    ],
+    "stuck": [],
+    "waitEdges": [],
+    "steps": [
+      {
+        "index": 0,
+        "available": [
+          1,
+          0,
+          0
+        ],
+        "runnable": "P2",
+        "note": "P2 的请求 [1, 0, 0] ≤ available [1, 0, 0]，获得后完成并释放"
+      },
+      {
+        "index": 1,
+        "available": [
+          1,
+          0,
+          1
+        ],
+        "runnable": "P1",
+        "note": "P1 的请求 [0, 0, 1] ≤ available [1, 0, 1]，获得后完成并释放"
+      },
+      {
+        "index": 2,
+        "available": [
+          1,
+          1,
+          1
+        ],
+        "runnable": "P0",
+        "note": "P0 的请求 [0, 1, 0] ≤ available [1, 1, 1]，获得后完成并释放"
+      }
+    ],
+    "reason": "归约完成：P2 → P1 → P0 均可推进，未检测到实际死锁。"
+  },
+  "operations": [
+    {
+      "index": 0,
+      "at": "2026-11-26T08:34:35.839Z",
+      "kind": "load",
+      "summary": "载入案例 deadlock_01：实际死锁：三进程循环等待",
+      "state": {
+        "id": "deadlock_01",
+        "resources": [
+          "A",
+          "B",
+          "C"
+        ],
+        "total": [
+          1,
+          1,
+          1
+        ],
+        "available": [
+          0,
+          0,
+          0
+        ],
+        "processes": [
+          "P0",
+          "P1",
+          "P2"
+        ],
+        "allocation": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "max": [
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            1
+          ]
+        ],
+        "requests": [
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "index": 1,
+      "at": "2026-11-26T08:34:35.839Z",
+      "kind": "release",
+      "summary": "P0 释放 [1, 0, 0]，打破等待环",
+      "state": {
+        "id": "deadlock_01",
+        "resources": [
+          "A",
+          "B",
+          "C"
+        ],
+        "total": [
+          1,
+          1,
+          1
+        ],
+        "available": [
+          1,
+          0,
+          0
+        ],
+        "processes": [
+          "P0",
+          "P1",
+          "P2"
+        ],
+        "allocation": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "max": [
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            1
+          ]
+        ],
+        "requests": [
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0
+          ]
+        ]
+      },
+      "processId": "P0",
+      "vector": [
+        1,
+        0,
+        0
+      ],
+      "accepted": true,
+      "message": "P0 已释放 [1, 0, 0]；可用量变为 [1, 0, 0]，安全性检查通过。"
+    }
+  ]
+}

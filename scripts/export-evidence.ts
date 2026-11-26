@@ -11,7 +11,7 @@ import { join } from "node:path";
 import { CASES } from "../src/data/cases";
 import { detectDeadlock } from "../src/core/deadlock";
 import { buildEvidence, createRecord } from "../src/core/evidence";
-import { handleRequest } from "../src/core/request";
+import { handleRequest, releaseResources } from "../src/core/request";
 import { checkSafety } from "../src/core/safety";
 import { cloneState } from "../src/core/state";
 import type { LabCase, OperationRecord } from "../src/core/types";
@@ -114,6 +114,49 @@ function main(): void {
       `已导出 ${fileName}：safe=${safety.safe} deadlocked=${deadlock.deadlocked} operations=${operations.length}`,
     );
   }
+
+  // C5：释放前后复检。deadlock_01 中 P0 释放 [1,0,0] 后，A 回到可用量，
+  // 等待环被打破，死锁判定应由 true 变为 false，安全性也应重新计算。
+  const deadlockCase = CASES.find((item) => item.id === "deadlock_01");
+  if (!deadlockCase) throw new Error("缺少 deadlock_01 案例");
+
+  const releaseState = cloneState(deadlockCase.state);
+  const releaseOps: OperationRecord[] = [
+    createRecord(0, "load", `载入案例 deadlock_01：${deadlockCase.title}`, releaseState),
+  ];
+  const releaseOutcome = releaseResources(releaseState, "P0", [1, 0, 0]);
+  if (!releaseOutcome.accepted) {
+    throw new Error(`deadlock_01 释放 P0 [1,0,0] 被拒绝：${releaseOutcome.message}`);
+  }
+  releaseOps.push(
+    createRecord(releaseOps.length, "release", "P0 释放 [1, 0, 0]，打破等待环", releaseOutcome.after, {
+      processId: "P0",
+      vector: [1, 0, 0],
+      accepted: true,
+      message: releaseOutcome.message,
+    }),
+  );
+
+  const releaseSafety = checkSafety(releaseOutcome.after);
+  const releaseDeadlock = detectDeadlock(releaseOutcome.after);
+  if (releaseDeadlock.deadlocked || !releaseSafety.safe) {
+    throw new Error(
+      `deadlock_01 释放后预期安全且未死锁，实际 safe=${releaseSafety.safe} deadlocked=${releaseDeadlock.deadlocked}`,
+    );
+  }
+
+  const releaseBundle = buildEvidence(
+    { id: `${deadlockCase.id}_release`, title: `${deadlockCase.title}（释放 P0 [1,0,0] 后复检）` },
+    releaseOutcome.after,
+    releaseSafety,
+    releaseDeadlock,
+    releaseOps,
+  );
+  const releaseFile = `${deadlockCase.id}_release_${STAMP}.json`;
+  writeFileSync(join(OUT_DIR, releaseFile), `${JSON.stringify(releaseBundle, null, 2)}\n`, "utf8");
+  console.log(
+    `已导出 ${releaseFile}：safe=${releaseSafety.safe} deadlocked=${releaseDeadlock.deadlocked} operations=${releaseOps.length}`,
+  );
 }
 
 main();

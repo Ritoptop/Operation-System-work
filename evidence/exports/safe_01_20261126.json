@@ -1,6 +1,6 @@
 {
   "tool": "banker-deadlock-lab v0.4",
-  "exportedAt": "2026-11-26T08:30:17.332Z",
+  "exportedAt": "2026-11-26T08:34:35.832Z",
   "caseId": "safe_01",
   "caseTitle": "安全状态：存在完整安全序列",
   "currentState": {
@@ -218,7 +218,7 @@
   "operations": [
     {
       "index": 0,
-      "at": "2026-11-26T08:30:17.323Z",
+      "at": "2026-11-26T08:34:35.832Z",
       "kind": "load",
       "summary": "载入案例 safe_01：安全状态：存在完整安全序列",
       "state": {

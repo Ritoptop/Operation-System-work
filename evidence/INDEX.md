@@ -12,7 +12,7 @@
 | C2 | 安全序列可人工复算 | `evidence/exports/safe_01_20261126.json`；报告 3.2 手算表 | 安全性检查面板 | 最新 commit（见 `SUBMISSION.md`） | 黄智铭 |
 | C3 | 试分配失败必须回滚 | `evidence/exports/unsafe_01_20261126.json`（`trial` 字段与拒绝记录） | 请求与释放面板 | 最新 commit（见 `SUBMISSION.md`） | 杨俊嘉 |
 | C4 | 拒绝请求有三种不同原因 | `evidence/exports/deadlock_01_20261126.json`（`EXCEEDS_NEED`、`EXCEEDS_AVAILABLE`）；`unsafe_01` 导出（`UNSAFE_AFTER_TRIAL`） | 请求与释放面板 | 最新 commit（见 `SUBMISSION.md`） | 杨俊嘉 |
-| C5 | 释放后需要重新检查 | 【待补：释放前后导出 JSON】 | 请求与释放 / 安全性面板 | — | 杨俊嘉 |
+| C5 | 释放后需要重新检查 | `evidence/exports/deadlock_01_release_20261126.json`（`load` + `release` 两条记录） | 请求与释放 / 安全性 / 实际死锁面板 | 最新 commit（见 `SUBMISSION.md`） | 杨俊嘉 |
 | C6 | 死锁必须用当前请求归约确认 | `evidence/exports/deadlock_01_20261126.json` | 实际死锁面板 | 最新 commit（见 `SUBMISSION.md`） | 黄杨荣 |
 
 ## 2. 三类案例
@@ -52,7 +52,7 @@
 - [x] 三类案例各 1 份导出 JSON
 - [x] 至少 1 份完整手算表，并与程序逐项对齐
 - [x] 三条拒绝原因各 1 份记录
-- [ ] 释放前后复检记录
+- [x] 释放前后复检记录
 - [x] 3–5 段模型关键对话，写入 `llm/`
 - [x] 6 份个人分析，写入 `individual/`
 - [x] 线上 URL 与完整 commit SHA
