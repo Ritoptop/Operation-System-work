@@ -5,9 +5,9 @@
 > **提交信息（待填）**
 > - 组号：【待填】
 > - 成员：【待填】
-> - 演示网址：【待填】
-> - 仓库地址：【待填】
-> - commit SHA：【待填】
+> - 演示网址：https://37m24m7l40bslahvn19.traesite.cn
+> - 仓库地址：https://github.com/Ritoptop/Operation-System-work
+> - commit SHA：以本仓库最新 commit 为准；完整 SHA 见课程提交说明
 
 ## 快速开始
 
