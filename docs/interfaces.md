@@ -6,17 +6,17 @@
 
 | 文件 | 内容 | 责任人 |
 |---|---|---|
-| `src/core/types.ts` | 全局类型，只加不改 | 成员1 |
-| `src/core/validate.ts` | 状态校验、need 派生、向量格式化 | 成员1 |
-| `src/core/state.ts` | 状态深拷贝，保证纯函数 | 成员1 |
-| `src/core/safety.ts` | `checkSafety` | 成员2 |
-| `src/core/request.ts` | `handleRequest`、`releaseResources` | 成员3 |
-| `src/core/deadlock.ts` | `detectDeadlock` | 成员4 |
-| `src/core/evidence.ts` | 证据 bundle 与 Markdown 摘要 | 成员6 |
-| `src/App.tsx`、`src/styles.css` | 页面与交互 | 成员5 |
-| `src/components/EvidencePanel.tsx` | 证据导出与轨迹列表 | 成员5/6 |
-| `cases/*.json` | 唯一案例数据源 | 成员4 |
-| `scripts/checker.*` | 独立复核实现 | 成员6 |
+| `src/core/types.ts` | 全局类型，只加不改 | 陈金树 |
+| `src/core/validate.ts` | 状态校验、need 派生、向量格式化 | 陈金树 |
+| `src/core/state.ts` | 状态深拷贝，保证纯函数 | 陈金树 |
+| `src/core/safety.ts` | `checkSafety` | 黄智铭 |
+| `src/core/request.ts` | `handleRequest`、`releaseResources` | 杨俊嘉 |
+| `src/core/deadlock.ts` | `detectDeadlock` | 黄杨荣 |
+| `src/core/evidence.ts` | 证据 bundle 与 Markdown 摘要 | 李军英 |
+| `src/App.tsx`、`src/styles.css` | 页面与交互 | 谢海基 |
+| `src/components/EvidencePanel.tsx` | 证据导出与轨迹列表 | 谢海基/李军英 |
+| `cases/*.json` | 唯一案例数据源 | 黄杨荣 |
+| `scripts/checker.*` | 独立复核实现 | 李军英 |
 
 ## 2. 四个核心函数
 
