@@ -70,8 +70,9 @@ Vite 5 + React 18 + TypeScript 5，单元测试使用 Vitest。
 - 页面底部「证据导出」可导出当前状态、安全性轨迹、死锁归约轨迹与全部操作记录。
 - 导出的 JSON 放入 `evidence/exports/`，并在 [`evidence/INDEX.md`](evidence/INDEX.md) 中登记。
 - 报告骨架见 [`report/小组报告.md`](report/小组报告.md)。
-- 模型交互记录模板见 [`llm/交互记录模板.md`](llm/交互记录模板.md)。
-- 个人分析模板见 [`individual/个人分析模板.md`](individual/个人分析模板.md)。
+- 模型交互记录见 [`llm/`](llm/)（L1–L4）；模板见 [`llm/交互记录模板.md`](llm/交互记录模板.md)。
+- 个人分析见 [`individual/`](individual/)（6 份）；模板见 [`individual/个人分析模板.md`](individual/个人分析模板.md)。
+- 证据导出：`npm run export:evidence` 生成 `evidence/exports/` 下三份案例 JSON。
 
 ## 提交前检查清单
 

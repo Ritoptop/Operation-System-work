@@ -1,0 +1,383 @@
+{
+  "tool": "banker-deadlock-lab v0.4",
+  "exportedAt": "2026-11-26T08:30:17.338Z",
+  "caseId": "unsafe_01",
+  "caseTitle": "不安全但尚未死锁",
+  "currentState": {
+    "id": "unsafe_01",
+    "resources": [
+      "A",
+      "B",
+      "C"
+    ],
+    "total": [
+      2,
+      2,
+      2
+    ],
+    "available": [
+      1,
+      1,
+      1
+    ],
+    "processes": [
+      "P0",
+      "P1",
+      "P2"
+    ],
+    "allocation": [
+      [
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        1
+      ]
+    ],
+    "max": [
+      [
+        3,
+        1,
+        0
+      ],
+      [
+        0,
+        3,
+        0
+      ],
+      [
+        0,
+        0,
+        3
+      ]
+    ],
+    "requests": [
+      [
+        1,
+        1,
+        0
+      ],
+      [
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        1
+      ]
+    ]
+  },
+  "safety": {
+    "safe": false,
+    "sequence": [],
+    "steps": [
+      {
+        "index": 0,
+        "work": [
+          1,
+          1,
+          1
+        ],
+        "candidates": [],
+        "chosen": null,
+        "finished": [],
+        "note": "无进程满足 need ≤ work：work = [1, 1, 1]；P0 尚需 [2, 1, 0]；P1 尚需 [0, 2, 0]；P2 尚需 [0, 0, 2]"
+      }
+    ],
+    "stopReason": "无进程满足 need ≤ work：work = [1, 1, 1]；P0 尚需 [2, 1, 0]；P1 尚需 [0, 2, 0]；P2 尚需 [0, 0, 2]"
+  },
+  "deadlock": {
+    "deadlocked": false,
+    "reducible": [
+      "P0",
+      "P1",
+      "P2"
+    ],
+    "stuck": [],
+    "waitEdges": [],
+    "steps": [
+      {
+        "index": 0,
+        "available": [
+          1,
+          1,
+          1
+        ],
+        "runnable": "P0",
+        "note": "P0 的请求 [1, 1, 0] ≤ available [1, 1, 1]，获得后完成并释放"
+      },
+      {
+        "index": 1,
+        "available": [
+          2,
+          1,
+          1
+        ],
+        "runnable": "P1",
+        "note": "P1 的请求 [0, 1, 0] ≤ available [2, 1, 1]，获得后完成并释放"
+      },
+      {
+        "index": 2,
+        "available": [
+          2,
+          2,
+          1
+        ],
+        "runnable": "P2",
+        "note": "P2 的请求 [0, 0, 1] ≤ available [2, 2, 1]，获得后完成并释放"
+      }
+    ],
+    "reason": "归约完成：P0 → P1 → P2 均可推进，未检测到实际死锁。"
+  },
+  "operations": [
+    {
+      "index": 0,
+      "at": "2026-11-26T08:30:17.337Z",
+      "kind": "load",
+      "summary": "载入案例 unsafe_01：不安全但尚未死锁",
+      "state": {
+        "id": "unsafe_01",
+        "resources": [
+          "A",
+          "B",
+          "C"
+        ],
+        "total": [
+          2,
+          2,
+          2
+        ],
+        "available": [
+          1,
+          1,
+          1
+        ],
+        "processes": [
+          "P0",
+          "P1",
+          "P2"
+        ],
+        "allocation": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "max": [
+          [
+            3,
+            1,
+            0
+          ],
+          [
+            0,
+            3,
+            0
+          ],
+          [
+            0,
+            0,
+            3
+          ]
+        ],
+        "requests": [
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ]
+      }
+    },
+    {
+      "index": 1,
+      "at": "2026-11-26T08:30:17.338Z",
+      "kind": "request",
+      "summary": "P0 请求 [1, 1, 0]，试分配后被回滚",
+      "state": {
+        "id": "unsafe_01",
+        "resources": [
+          "A",
+          "B",
+          "C"
+        ],
+        "total": [
+          2,
+          2,
+          2
+        ],
+        "available": [
+          1,
+          1,
+          1
+        ],
+        "processes": [
+          "P0",
+          "P1",
+          "P2"
+        ],
+        "allocation": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "max": [
+          [
+            3,
+            1,
+            0
+          ],
+          [
+            0,
+            3,
+            0
+          ],
+          [
+            0,
+            0,
+            3
+          ]
+        ],
+        "requests": [
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ]
+      },
+      "processId": "P0",
+      "vector": [
+        1,
+        1,
+        0
+      ],
+      "accepted": false,
+      "code": "UNSAFE_AFTER_TRIAL",
+      "message": "试分配后不存在安全序列，已回滚。拒绝原因是不安全，不代表系统已经死锁。",
+      "trial": {
+        "id": "unsafe_01",
+        "resources": [
+          "A",
+          "B",
+          "C"
+        ],
+        "total": [
+          2,
+          2,
+          2
+        ],
+        "available": [
+          0,
+          0,
+          1
+        ],
+        "processes": [
+          "P0",
+          "P1",
+          "P2"
+        ],
+        "allocation": [
+          [
+            2,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "max": [
+          [
+            3,
+            1,
+            0
+          ],
+          [
+            0,
+            3,
+            0
+          ],
+          [
+            0,
+            0,
+            3
+          ]
+        ],
+        "requests": [
+          null,
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ]
+      }
+    }
+  ]
+}

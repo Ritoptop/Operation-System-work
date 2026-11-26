@@ -1,0 +1,400 @@
+{
+  "tool": "banker-deadlock-lab v0.4",
+  "exportedAt": "2026-11-26T08:30:17.342Z",
+  "caseId": "deadlock_01",
+  "caseTitle": "实际死锁：三进程循环等待",
+  "currentState": {
+    "id": "deadlock_01",
+    "resources": [
+      "A",
+      "B",
+      "C"
+    ],
+    "total": [
+      1,
+      1,
+      1
+    ],
+    "available": [
+      0,
+      0,
+      0
+    ],
+    "processes": [
+      "P0",
+      "P1",
+      "P2"
+    ],
+    "allocation": [
+      [
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        1
+      ]
+    ],
+    "max": [
+      [
+        1,
+        1,
+        0
+      ],
+      [
+        0,
+        1,
+        1
+      ],
+      [
+        1,
+        0,
+        1
+      ]
+    ],
+    "requests": [
+      [
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        0
+      ]
+    ]
+  },
+  "safety": {
+    "safe": false,
+    "sequence": [],
+    "steps": [
+      {
+        "index": 0,
+        "work": [
+          0,
+          0,
+          0
+        ],
+        "candidates": [],
+        "chosen": null,
+        "finished": [],
+        "note": "无进程满足 need ≤ work：work = [0, 0, 0]；P0 尚需 [0, 1, 0]；P1 尚需 [0, 0, 1]；P2 尚需 [1, 0, 0]"
+      }
+    ],
+    "stopReason": "无进程满足 need ≤ work：work = [0, 0, 0]；P0 尚需 [0, 1, 0]；P1 尚需 [0, 0, 1]；P2 尚需 [1, 0, 0]"
+  },
+  "deadlock": {
+    "deadlocked": true,
+    "reducible": [],
+    "stuck": [
+      "P0",
+      "P1",
+      "P2"
+    ],
+    "waitEdges": [
+      {
+        "from": "P0",
+        "to": "P1",
+        "resource": "B"
+      },
+      {
+        "from": "P1",
+        "to": "P2",
+        "resource": "C"
+      },
+      {
+        "from": "P2",
+        "to": "P0",
+        "resource": "A"
+      }
+    ],
+    "steps": [
+      {
+        "index": 0,
+        "available": [
+          0,
+          0,
+          0
+        ],
+        "runnable": null,
+        "note": "不动点：available = [0, 0, 0]，剩余进程均无法推进"
+      }
+    ],
+    "reason": "available = [0, 0, 0] 下无可推进进程，P0、P1、P2 仍处于等待，判定为实际死锁。"
+  },
+  "operations": [
+    {
+      "index": 0,
+      "at": "2026-11-26T08:30:17.342Z",
+      "kind": "load",
+      "summary": "载入案例 deadlock_01：实际死锁：三进程循环等待",
+      "state": {
+        "id": "deadlock_01",
+        "resources": [
+          "A",
+          "B",
+          "C"
+        ],
+        "total": [
+          1,
+          1,
+          1
+        ],
+        "available": [
+          0,
+          0,
+          0
+        ],
+        "processes": [
+          "P0",
+          "P1",
+          "P2"
+        ],
+        "allocation": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "max": [
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            1
+          ]
+        ],
+        "requests": [
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "index": 1,
+      "at": "2026-11-26T08:30:17.342Z",
+      "kind": "request",
+      "summary": "P0 请求 [0, 2, 0]，超过尚需量",
+      "state": {
+        "id": "deadlock_01",
+        "resources": [
+          "A",
+          "B",
+          "C"
+        ],
+        "total": [
+          1,
+          1,
+          1
+        ],
+        "available": [
+          0,
+          0,
+          0
+        ],
+        "processes": [
+          "P0",
+          "P1",
+          "P2"
+        ],
+        "allocation": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "max": [
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            1
+          ]
+        ],
+        "requests": [
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0
+          ]
+        ]
+      },
+      "processId": "P0",
+      "vector": [
+        0,
+        2,
+        0
+      ],
+      "accepted": false,
+      "code": "EXCEEDS_NEED",
+      "message": "请求 [0, 2, 0] 超过 P0 的尚需量 [0, 1, 0]，违反最大需求承诺。状态不变。",
+      "trial": null
+    },
+    {
+      "index": 2,
+      "at": "2026-11-26T08:30:17.342Z",
+      "kind": "request",
+      "summary": "P0 请求 [0, 1, 0]，当前可用量不足",
+      "state": {
+        "id": "deadlock_01",
+        "resources": [
+          "A",
+          "B",
+          "C"
+        ],
+        "total": [
+          1,
+          1,
+          1
+        ],
+        "available": [
+          0,
+          0,
+          0
+        ],
+        "processes": [
+          "P0",
+          "P1",
+          "P2"
+        ],
+        "allocation": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "max": [
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            1
+          ]
+        ],
+        "requests": [
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0
+          ]
+        ]
+      },
+      "processId": "P0",
+      "vector": [
+        0,
+        1,
+        0
+      ],
+      "accepted": false,
+      "code": "EXCEEDS_AVAILABLE",
+      "message": "当前可用量 [0, 0, 0] 不足以满足 [0, 1, 0]，P0 需要等待。状态不变。",
+      "trial": null
+    }
+  ]
+}

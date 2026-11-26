@@ -1,0 +1,300 @@
+{
+  "tool": "banker-deadlock-lab v0.4",
+  "exportedAt": "2026-11-26T08:30:17.332Z",
+  "caseId": "safe_01",
+  "caseTitle": "安全状态：存在完整安全序列",
+  "currentState": {
+    "id": "safe_01",
+    "resources": [
+      "A",
+      "B",
+      "C"
+    ],
+    "total": [
+      10,
+      5,
+      7
+    ],
+    "available": [
+      3,
+      3,
+      4
+    ],
+    "processes": [
+      "P0",
+      "P1",
+      "P2",
+      "P3"
+    ],
+    "allocation": [
+      [
+        0,
+        1,
+        0
+      ],
+      [
+        2,
+        0,
+        0
+      ],
+      [
+        3,
+        0,
+        2
+      ],
+      [
+        2,
+        1,
+        1
+      ]
+    ],
+    "max": [
+      [
+        7,
+        5,
+        3
+      ],
+      [
+        3,
+        2,
+        2
+      ],
+      [
+        9,
+        0,
+        2
+      ],
+      [
+        2,
+        2,
+        2
+      ]
+    ],
+    "requests": [
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "safety": {
+    "safe": true,
+    "sequence": [
+      "P1",
+      "P3",
+      "P0",
+      "P2"
+    ],
+    "steps": [
+      {
+        "index": 0,
+        "work": [
+          3,
+          3,
+          4
+        ],
+        "candidates": [
+          "P1",
+          "P3"
+        ],
+        "chosen": "P1",
+        "finished": [
+          "P1"
+        ],
+        "note": "P1 尚需 [1, 2, 2] ≤ work [3, 3, 4]，完成后 work += [2, 0, 0]"
+      },
+      {
+        "index": 1,
+        "work": [
+          5,
+          3,
+          4
+        ],
+        "candidates": [
+          "P3"
+        ],
+        "chosen": "P3",
+        "finished": [
+          "P1",
+          "P3"
+        ],
+        "note": "P3 尚需 [0, 1, 1] ≤ work [5, 3, 4]，完成后 work += [2, 1, 1]"
+      },
+      {
+        "index": 2,
+        "work": [
+          7,
+          4,
+          5
+        ],
+        "candidates": [
+          "P0",
+          "P2"
+        ],
+        "chosen": "P0",
+        "finished": [
+          "P0",
+          "P1",
+          "P3"
+        ],
+        "note": "P0 尚需 [7, 4, 3] ≤ work [7, 4, 5]，完成后 work += [0, 1, 0]"
+      },
+      {
+        "index": 3,
+        "work": [
+          7,
+          5,
+          5
+        ],
+        "candidates": [
+          "P2"
+        ],
+        "chosen": "P2",
+        "finished": [
+          "P0",
+          "P1",
+          "P2",
+          "P3"
+        ],
+        "note": "P2 尚需 [6, 0, 0] ≤ work [7, 5, 5]，完成后 work += [3, 0, 2]"
+      }
+    ],
+    "stopReason": null
+  },
+  "deadlock": {
+    "deadlocked": false,
+    "reducible": [
+      "P0",
+      "P1",
+      "P2",
+      "P3"
+    ],
+    "stuck": [],
+    "waitEdges": [],
+    "steps": [
+      {
+        "index": 0,
+        "available": [
+          3,
+          3,
+          4
+        ],
+        "runnable": "P0",
+        "note": "P0 当前无阻塞请求，直接完成并释放 [0, 1, 0]"
+      },
+      {
+        "index": 1,
+        "available": [
+          3,
+          4,
+          4
+        ],
+        "runnable": "P1",
+        "note": "P1 当前无阻塞请求，直接完成并释放 [2, 0, 0]"
+      },
+      {
+        "index": 2,
+        "available": [
+          5,
+          4,
+          4
+        ],
+        "runnable": "P2",
+        "note": "P2 当前无阻塞请求，直接完成并释放 [3, 0, 2]"
+      },
+      {
+        "index": 3,
+        "available": [
+          8,
+          4,
+          6
+        ],
+        "runnable": "P3",
+        "note": "P3 当前无阻塞请求，直接完成并释放 [2, 1, 1]"
+      }
+    ],
+    "reason": "归约完成：P0 → P1 → P2 → P3 均可推进，未检测到实际死锁。"
+  },
+  "operations": [
+    {
+      "index": 0,
+      "at": "2026-11-26T08:30:17.323Z",
+      "kind": "load",
+      "summary": "载入案例 safe_01：安全状态：存在完整安全序列",
+      "state": {
+        "id": "safe_01",
+        "resources": [
+          "A",
+          "B",
+          "C"
+        ],
+        "total": [
+          10,
+          5,
+          7
+        ],
+        "available": [
+          3,
+          3,
+          4
+        ],
+        "processes": [
+          "P0",
+          "P1",
+          "P2",
+          "P3"
+        ],
+        "allocation": [
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            3,
+            0,
+            2
+          ],
+          [
+            2,
+            1,
+            1
+          ]
+        ],
+        "max": [
+          [
+            7,
+            5,
+            3
+          ],
+          [
+            3,
+            2,
+            2
+          ],
+          [
+            9,
+            0,
+            2
+          ],
+          [
+            2,
+            2,
+            2
+          ]
+        ],
+        "requests": [
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    }
+  ]
+}
