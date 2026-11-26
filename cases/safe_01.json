@@ -1,0 +1,31 @@
+{
+  "id": "safe_01",
+  "title": "安全状态：存在完整安全序列",
+  "kind": "safe",
+  "summary": "4 个进程、3 类资源，初始可用量足以启动某个进程，可完整推进到全部完成。用于核对工作向量、安全序列与编号平局规则。",
+  "state": {
+    "id": "safe_01",
+    "resources": ["A", "B", "C"],
+    "total": [10, 5, 7],
+    "available": [3, 3, 4],
+    "processes": ["P0", "P1", "P2", "P3"],
+    "allocation": [
+      [0, 1, 0],
+      [2, 0, 0],
+      [3, 0, 2],
+      [2, 1, 1]
+    ],
+    "max": [
+      [7, 5, 3],
+      [3, 2, 2],
+      [9, 0, 2],
+      [2, 2, 2]
+    ],
+    "requests": [null, null, null, null]
+  },
+  "expected": {
+    "safe": true,
+    "deadlocked": false,
+    "safeSequence": ["P1", "P3", "P0", "P2"]
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "id": "unsafe_01",
+  "title": "不安全但尚未死锁",
+  "kind": "unsafe",
+  "summary": "任何进程都无法一次性满足剩余最大需求，所以安全性检查失败；但 P0 的当前实际请求可以被满足，归约能继续，因此系统并未死锁。",
+  "state": {
+    "id": "unsafe_01",
+    "resources": ["A", "B", "C"],
+    "total": [2, 2, 2],
+    "available": [1, 1, 1],
+    "processes": ["P0", "P1", "P2"],
+    "allocation": [
+      [1, 0, 0],
+      [0, 1, 0],
+      [0, 0, 1]
+    ],
+    "max": [
+      [3, 1, 0],
+      [0, 3, 0],
+      [0, 0, 3]
+    ],
+    "requests": [
+      [1, 1, 0],
+      [0, 1, 0],
+      [0, 0, 1]
+    ]
+  },
+  "expected": {
+    "safe": false,
+    "deadlocked": false,
+    "reducibleOrder": ["P0", "P1", "P2"],
+    "stuck": []
+  }
+}

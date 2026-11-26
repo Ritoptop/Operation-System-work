@@ -1,0 +1,39 @@
+{
+  "id": "deadlock_01",
+  "title": "实际死锁：三进程循环等待",
+  "kind": "deadlock",
+  "summary": "三类资源各只有 1 个且已全部分配，P0→P1→P2→P0 形成等待环，可用量为零，归约无法启动任何进程。",
+  "state": {
+    "id": "deadlock_01",
+    "resources": ["A", "B", "C"],
+    "total": [1, 1, 1],
+    "available": [0, 0, 0],
+    "processes": ["P0", "P1", "P2"],
+    "allocation": [
+      [1, 0, 0],
+      [0, 1, 0],
+      [0, 0, 1]
+    ],
+    "max": [
+      [1, 1, 0],
+      [0, 1, 1],
+      [1, 0, 1]
+    ],
+    "requests": [
+      [0, 1, 0],
+      [0, 0, 1],
+      [1, 0, 0]
+    ]
+  },
+  "expected": {
+    "safe": false,
+    "deadlocked": true,
+    "reducibleOrder": [],
+    "stuck": ["P0", "P1", "P2"],
+    "waitEdges": [
+      { "from": "P0", "to": "P1", "resource": "B" },
+      { "from": "P1", "to": "P2", "resource": "C" },
+      { "from": "P2", "to": "P0", "resource": "A" }
+    ]
+  }
+}
